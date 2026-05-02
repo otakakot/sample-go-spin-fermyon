@@ -1,0 +1,18 @@
+spin_manifest_version = 2
+
+[application]
+name = "sample-go-spin-fermyon"
+version = "0.1.0"
+authors = ["otakakot"]
+description = ""
+
+[[trigger.http]]
+route = "/..."
+component = "sample-go-spin-fermyon"
+
+[component.sample-go-spin-fermyon]
+source = "main.wasm"
+allowed_outbound_hosts = []
+[component.sample-go-spin-fermyon.build]
+command = "tinygo build -target=wasip1 -gc=leaking -buildmode=c-shared -no-debug -o main.wasm ."
+watch = ["**/*.go", "go.mod"]
